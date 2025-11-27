@@ -37,7 +37,7 @@ def test_data_files():
     """Test that required data files exist."""
     print("\nTesting data files...")
     
-    ROOT = Path(__file__).resolve().parents[3]
+    ROOT = Path(__file__).resolve().parents[4]
     
     files = [
         (ROOT / "data" / "processed" / "synthetic_data_for_contrastive_learning.jsonl", "Training data"),

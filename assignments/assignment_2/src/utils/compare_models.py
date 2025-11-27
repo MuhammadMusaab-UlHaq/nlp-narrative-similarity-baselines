@@ -14,11 +14,11 @@ from datetime import datetime
 
 # Import evaluation function from main script
 import sys
-sys.path.append(str(Path(__file__).parent))
-from usman_finetune_embeddings import evaluate_model
+sys.path.append(str(Path(__file__).parents[1]))
+from model_4_finetuned_sbert import evaluate_model
 
 # Setup paths
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[4]
 DATA_DIR = ROOT / "data"
 OUTPUT_DIR = ROOT / "assignments" / "assignment_2" / "output" / "usman_amjad"
 
