@@ -8,8 +8,8 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 # NLTK package 'punkt' should be downloaded from the previous step.
 
 # Define file paths based on project plan
-DATA_FILE = 'data/dev_track_a.jsonl' 
-PLOT_DIR = 'plots/'
+DATA_FILE = 'data/raw/dev_track_a.jsonl' 
+PLOT_DIR = 'assignments/assignment_1/plots/'
 
 # --- 2. Load Data ---
 # Task: Load the data

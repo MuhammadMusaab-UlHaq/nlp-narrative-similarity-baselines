@@ -27,9 +27,9 @@ except Exception:
     MATPLOTLIB_AVAILABLE = False
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = ROOT / "data"
-OUT_DIR = ROOT / "reports" / "assignment_1_usman_amjad"
+OUT_DIR = ROOT / "assignments" / "assignment_1" / "output"
 PLOT_DIR = OUT_DIR / "plots"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 PLOT_DIR.mkdir(parents=True, exist_ok=True)
