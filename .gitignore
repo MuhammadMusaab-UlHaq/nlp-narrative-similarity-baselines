@@ -46,3 +46,8 @@ temp/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+
+# Personal help files, not needed for commit
+
+directory_info.txt
+generate_context.py
