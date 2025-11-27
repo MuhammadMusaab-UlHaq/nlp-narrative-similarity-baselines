@@ -286,13 +286,13 @@ This could impact model generalization.
 def main():
     """Main execution function."""
     # Path to human-annotated data
-    data_path = "../data/dev_track_a.jsonl"
+    data_path = "data/raw/dev_track_a.jsonl"
     
     # Initialize analyzer
     analyzer = NgramAnalyzer(data_path)
     
     # Run complete analysis
-    analyzer.run_complete_analysis()
+    analyzer.run_complete_analysis(output_dir="assignments/assignment_1/plots")
 
 
 if __name__ == "__main__":
