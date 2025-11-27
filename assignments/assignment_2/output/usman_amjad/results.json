@@ -1,0 +1,17 @@
+{
+  "model": "all-MiniLM-L6-v2",
+  "training_triplets": 1897,
+  "training_samples": 3794,
+  "dev_accuracy": 0.585,
+  "baseline_accuracy": 0.55,
+  "improvement_absolute": 0.035,
+  "improvement_relative_percent": 6.36,
+  "epochs": 4,
+  "batch_size": 16,
+  "warmup_steps": 100,
+  "training_duration_seconds": 230.75,
+  "training_duration_minutes": 3.85,
+  "correct_predictions": 117,
+  "total_examples": 200,
+  "timestamp": "2025-11-25"
+}
