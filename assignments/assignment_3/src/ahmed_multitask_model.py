@@ -71,7 +71,9 @@ def train_multitask_model():
     
     # Robust Path Finding (Goes up 3 levels to find 'data' folder)
     # 1. Try relative path
-    train_path = os.path.join(script_dir, '..', '..', '..', 'data', 'processed', 'combined_synthetic_for_training.jsonl')
+    # To this (combines both datasets):
+    train_path_original = os.path.join(script_dir, '..', '..', '..', 'data', 'processed', 'combined_synthetic_for_training.jsonl') # Muhammad Musaab Ul Haq: changed the paths for the convenience of Usman Amjad. 
+    train_path_augmented = os.path.join(script_dir, '..', '..', '..', 'data', 'processed', 'augmented_synthetic_500.jsonl')
     
     # 2. Fallback to the absolute path if relative fails (based on your previous logs)
     if not os.path.exists(os.path.normpath(train_path)):
