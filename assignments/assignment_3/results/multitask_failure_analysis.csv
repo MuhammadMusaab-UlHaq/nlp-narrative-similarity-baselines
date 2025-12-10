@@ -1,0 +1,9 @@
+Aspect,Value,Interpretation
+Training Loss (Start),2.02,Model began learning
+Training Loss (End),0.82,Loss decreased 60%
+Evaluation Accuracy,50.25%,Essentially random guessing
+Similar Pairs Mean Sim,0.3796,Should be HIGH
+Dissimilar Pairs Mean Sim,0.3724,Should be LOW
+Separation Gap,0.0072,Almost no separation!
+Diagnosis,Embedding Collapse,Model outputs similar embeddings for all inputs
+Root Cause,Domain Mismatch,Synthetic training ≠ real movie plots

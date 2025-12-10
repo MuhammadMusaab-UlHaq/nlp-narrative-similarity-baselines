@@ -1,0 +1,10 @@
+Model,Assignment,Type,Owner,Accuracy,Cost_Per_200,Notes
+Random Baseline,-,Baseline,-,0.5,$0.00,Theoretical lower bound
+TF-IDF + Cosine Similarity,A1,Lexical,Musaab,0.525,$0.00,Simple baseline for error analysis
+SBERT Pretrained,A2,Embedding,Ahmed,0.55,$0.00,No fine-tuning (all-MiniLM-L6-v2)
+TF-IDF + Logistic Regression,A2,ML Pipeline,Abdul Mueed,0.6,$0.00,Trained on combined data
+Fine-tuned SBERT,A2,Embedding,Usman,0.585,$0.00,Contrastive learning on synthetic data
+CoT LLM (GPT-4o-mini),A2,LLM,Musaab,0.7181,$0.20,"Best accuracy, highest cost"
+CoT LLM (Mistral Small),A2,LLM,Musaab,0.69,$0.15,"Slightly lower accuracy, lower cost"
+Multi-task SBERT,A3,Embedding,Ahmed/Usman,0.5025,$0.00,FAILED - no generalization
+Hybrid (Proposed),A3,Hybrid,Musaab,0.63,$0.11,45% cost savings vs pure LLM

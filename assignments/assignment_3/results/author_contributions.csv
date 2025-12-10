@@ -1,0 +1,5 @@
+Member,Role,A1,A2,A3,Code_Files,Report
+Muhammad Musaab ul Haq,"Team Lead, System Integrator","TF-IDF baseline, error analysis (25 cases)",CoT LLM Reasoner (71.8%),Hybrid model design & implementation,"model_1_llm_reasoner.py, musaab_hybrid_model.py, generate_plots.py","Abstract, Intro, Hybrid Method, Discussion, Conclusion"
+Abdul Mueed Habib Raja,Data & Classic NLP,"Statistical analysis, distribution plots",TF-IDF + LogReg pipeline (~60%),Data augmentation (500 samples),"abdul_mueed_stats.py, abdulmueed.ipynb",Section 3.1 Data Augmentation
+Ahmed Hassan Raza,Embedding Models,"N-gram analysis, vocabulary statistics",SBERT baseline (~55%),Multi-task architecture design,"ahmed_ngram_analysis.py, ahmed_multitask_model.py",Section 3.2 Multi-task Learning
+Usman Amjad,Experiments & Fine-tuning,Human vs synthetic comparison,Fine-tuned SBERT (58.5%),Multi-task training & evaluation,"model_4_finetuned_sbert.py, usman_amjad_Assignment3.py, evaluate_model.py",Section 4-5 Experiments & Results

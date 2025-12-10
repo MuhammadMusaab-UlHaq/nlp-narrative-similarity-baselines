@@ -1,0 +1,11 @@
+Metric,Value,Notes
+Total Samples,200,dev_track_a.jsonl
+Overall Accuracy,63.00%,Combined fast + slow paths
+Fast Path Count,90,45.0% of total
+Fast Path Accuracy,47.78%,Embedding model only
+Slow Path Count,110,55.0% of total
+Slow Path Accuracy,75.45%,LLM (Mistral Small)
+LLM Errors,0,API failures
+Confidence Threshold,0.10,|sim_a - sim_b| threshold
+Mean Confidence,0.1138,Average |sim_a - sim_b|
+Cost vs Pure LLM,45% savings,$0.11 vs $0.20 per 200 samples
