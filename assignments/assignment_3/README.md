@@ -110,7 +110,7 @@ Input → SBERT Embedding → Similarity Scores → Confidence Check
 ## Deliverables
 
 - ✅ **Code:** `src/musaab_hybrid_model.py`, `src/ahmed_multitask_model.py`
-- ✅ **Report:** `reports/assignment_3_report.tex` (LaTeX, 4 pages)
+- ✅ **Report:** `reports/assignment_3_report.tex` 
 - ✅ **Visualizations:** 6 PDF plots in `plots/`
 - ✅ **Results:** CSV tables in `results/`
 

@@ -1,11 +1,11 @@
 # SemEval-2026 Task 4: Narrative Story Similarity
 
 **Course Project - Artificial Intelligence**  
-**University of Engineering and Technology, Lahore**
+**NUST, Islamabad**
 
 ## 📋 Overview
 
-This repository contains our team's implementation for [SemEval-2026 Task 4: How Similar is Too Similar?](https://sites.google.com/view/semeval2026-task4/) - a shared task focused on detecting semantic proximity between narrative stories.
+This repository contains our team's implementation for [SemEval-2026 Task 4: How Similar is Too Similar?](https://www.codabench.org/competitions/10273/) - a shared task focused on detecting semantic proximity between narrative stories.
 
 ### Task Description
 
