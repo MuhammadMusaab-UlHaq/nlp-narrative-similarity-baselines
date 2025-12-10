@@ -34,9 +34,9 @@ def setup_client(provider, api_key=None, model_name=None):
     global client, MODEL_NAME
     
     if provider == "gemini":
-        key = api_key or os.getenv("GEMINI_API_KEY") or "GEMINI_API_KEY_PLACEHOLDER"
+        key = api_key or os.getenv("GEMINI_API_KEY")
         if not key:
-            raise ValueError("Gemini API Key not found")
+            raise ValueError("Gemini API Key not found. Set GEMINI_API_KEY environment variable.")
         client = OpenAI(
             api_key=key,
             base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
@@ -56,9 +56,9 @@ def setup_client(provider, api_key=None, model_name=None):
         print(f"Using OpenRouter API with model {MODEL_NAME}")
 
     elif provider == "poe":
-        key = api_key or os.getenv("POE_API_KEY") or "POE_API_KEY_PLACEHOLDER"
+        key = api_key or os.getenv("POE_API_KEY")
         if not key:
-             raise ValueError("Poe API Key not found")
+             raise ValueError("Poe API Key not found. Set POE_API_KEY environment variable.")
         client = OpenAI(
             api_key=key,
             base_url="https://api.poe.com/v1"
@@ -75,9 +75,9 @@ def setup_client(provider, api_key=None, model_name=None):
         print(f"Using OpenAI API with model {MODEL_NAME}")
 
     elif provider == "mistral":
-        key = api_key or os.getenv("MISTRAL_API_KEY") or "MISTRAL_API_KEY_PLACEHOLDER"
+        key = api_key or os.getenv("MISTRAL_API_KEY")
         if not key:
-             raise ValueError("Mistral API Key not found")
+             raise ValueError("Mistral API Key not found. Set MISTRAL_API_KEY environment variable.")
         client = OpenAI(
             api_key=key,
             base_url="https://api.mistral.ai/v1"

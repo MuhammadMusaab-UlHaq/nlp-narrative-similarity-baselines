@@ -88,17 +88,17 @@ You must output a valid JSON object:
 API_CONFIGS = {
     "gemini": {
         "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
-        "api_key": "GEMINI_API_KEY_PLACEHOLDER",
+        "api_key": os.getenv("GEMINI_API_KEY", ""),
         "model": "gemini-2.0-flash"
     },
     "mistral": {
         "base_url": "https://api.mistral.ai/v1",
-        "api_key": "MISTRAL_API_KEY_PLACEHOLDER",
+        "api_key": os.getenv("MISTRAL_API_KEY", ""),
         "model": "mistral-small-latest"
     },
     "poe": {
         "base_url": "https://api.poe.com/v1",
-        "api_key": "POE_API_KEY_PLACEHOLDER",
+        "api_key": os.getenv("POE_API_KEY", ""),
         "model": "gpt-4o-mini"
     }
 }
