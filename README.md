@@ -1,48 +1,195 @@
-### **Assignment 1: Problem and Data Understanding Report**
+# SemEval-2026 Task 4: Narrative Story Similarity
 
-**Team Member:** Muhammad Musaab ul Haq
+**Course Project - Artificial Intelligence**  
+**University of Engineering and Technology, Lahore**
 
-**Objective:** To conduct an in-depth analysis of the SemEval 2026 Task 4 development dataset to understand its core challenges, define the problem space, and inform the strategy for subsequent assignments.
+## 📋 Overview
 
-**Methodology:** A simple TF-IDF + Cosine Similarity baseline was implemented not as a viable solution, but as a diagnostic probe. By analyzing the specific cases where this lexical model fails, we can reverse-engineer the dataset's underlying complexities. The baseline's near-random accuracy of **52.5%** immediately confirmed that the dataset is non-trivial and robust against superficial methods.
+This repository contains our team's implementation for [SemEval-2026 Task 4: How Similar is Too Similar?](https://sites.google.com/view/semeval2026-task4/) - a shared task focused on detecting semantic proximity between narrative stories.
+
+### Task Description
+
+Given an **anchor story** and two candidate stories (**Text A** and **Text B**), determine which candidate is semantically more similar to the anchor. This requires understanding:
+- Abstract thematic elements
+- Narrative structure and plot arcs
+- Story outcomes and conclusions
+- Character dynamics and relationships
+
+## 🏆 Key Results
+
+| Model | Assignment | Accuracy | Cost/Sample |
+|-------|------------|----------|-------------|
+| Random Baseline | - | 50.00% | $0 |
+| TF-IDF + Cosine | A1 | 52.50% | $0 |
+| SBERT Pretrained | A2 | ~55% | $0 |
+| Fine-tuned SBERT | A2 | 58.50% | $0 |
+| **CoT LLM (GPT-4)** | A2 | **71.80%** | ~$0.02 |
+| Multi-task Learning | A3 | 50.25% | $0 |
+| **Hybrid System** | A3 | **69.50%** | ~$0.015 (27% savings) |
+
+**Best Overall:** CoT LLM at 71.8% accuracy  
+**Best Cost-Efficient:** Hybrid System at 69.5% with 27% cost savings
+
+## 👥 Team Members
+
+| Name | Role | Key Contributions |
+|------|------|-------------------|
+| **Muhammad Musaab ul Haq** | System Integrator | Hybrid model, error analysis, final reports |
+| **Ahmed Hassan Raza** | ML Engineer | N-gram analysis, Multi-task learning model |
+| **Abdul Mueed** | Data Scientist | Statistical analysis, Data augmentation |
+| **Usman Amjad** | ML Engineer | Fine-tuned SBERT, Experimentation |
+
+## 📁 Repository Structure
+
+```
+ai_sem_proj_semeval-2026-task-4-baselines/
+├── README.md                          # This file
+├── requirements.txt                   # Python dependencies
+├── data/
+│   ├── raw/                           # Original competition data
+│   │   ├── dev_track_a.jsonl          # Development set (201 examples)
+│   │   ├── dev_track_b.jsonl
+│   │   └── sample_track_*.jsonl
+│   └── processed/                     # Generated training data
+│       ├── synthetic_data_for_contrastive_learning.jsonl
+│       ├── augmented_synthetic_500.jsonl
+│       └── combined_synthetic_for_training.jsonl
+├── baseline_organizers/               # Official baselines (unchanged)
+│   ├── track_a_baseline.py
+│   └── track_b_baseline.py
+└── assignments/
+    ├── assignment_1/                  # Problem & Data Understanding
+    ├── assignment_2/                  # Baseline Implementation
+    └── assignment_3/                  # Proposed Solution
+```
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/MuhammadMusaab-UlHaq/ai_sem_proj_semeval-2026-task-4-baselines.git
+cd ai_sem_proj_semeval-2026-task-4-baselines
+
+# Create virtual environment
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1  # Windows
+# source .venv/bin/activate   # Linux/Mac
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Running the Models
+
+#### Assignment 1: TF-IDF Baseline
+```bash
+jupyter notebook assignments/assignment_1/src/musaab_baseline.ipynb
+```
+
+#### Assignment 2: Fine-tuned SBERT
+```bash
+python assignments/assignment_2/src/model_4_finetuned_sbert.py
+```
+
+#### Assignment 3: Hybrid Model (Best)
+```bash
+python assignments/assignment_3/src/musaab_hybrid_model.py
+```
+
+## 📊 Assignment Details
+
+### Assignment 1: Problem & Data Understanding
+
+**Goal:** Analyze the dataset to understand its challenges and inform model design.
+
+**Key Findings:**
+1. **Lexical Traps:** Stories with high keyword overlap but different narratives
+2. **Abstract Themes:** Similarity based on concepts, not surface words  
+3. **Narrative Structure:** Story outcomes are crucial for determining similarity
+
+**Files:**
+- `assignments/assignment_1/src/` - Analysis scripts
+- `assignments/assignment_1/reports/` - Detailed findings
 
 ---
 
-### **Key Characteristics and Challenges of the Dataset**
+### Assignment 2: Baseline Implementation
 
-The analysis of 95 failure cases reveals that the dataset is deliberately constructed to reward a deep, human-like understanding of narrative while penalizing simple lexical matching. The key challenges embedded within the data are as follows:
+**Goal:** Implement and compare baseline approaches.
 
-#### **Challenge 1: The Presence of High-Signal Lexical Traps**
+**Models Implemented:**
+| Model | Owner | Accuracy |
+|-------|-------|----------|
+| TF-IDF + LogReg | Abdul Mueed | ~60% |
+| SBERT Pretrained | Ahmed | ~55% |
+| Fine-tuned SBERT | Usman | 58.5% |
+| CoT LLM (GPT-4) | Musaab | **71.8%** |
 
-A primary characteristic of this dataset is the intentional inclusion of narratively dissimilar stories that share a high degree of superficial keyword overlap. A purely lexical model is consistently drawn to these false signals.
+**Files:**
+- `assignments/assignment_2/src/` - Model implementations
+- `assignments/assignment_2/notebooks/` - Jupyter experiments
 
-*   **Evidence (Proper Nouns):** In **Case 75**, the dataset contains two stories where the protagonists are both named **"Paul."** This single, identical keyword resulted in an overwhelmingly confident (and incorrect) prediction, demonstrating that the data will actively punish systems that over-weight superficial details.
-*   **Evidence (Setting & Genre):** In **Case 190**, two stories were incorrectly matched because one began on a **"beach"** and the other involved being lost at **"sea."** The dataset frequently uses shared settings (e.g., "Paris" in **Case 143**), professions (e.g., "writer" in **Case 164**), or genre conventions (e.g., "crime thriller" in **Case 172**) to create these traps.
+---
 
-**Implication:** Any successful system must be able to look past simple word co-occurrence and prioritize deeper structural and thematic connections.
+### Assignment 3: Proposed Solution
 
-#### **Challenge 2: The Primacy of Abstract Thematic Cores**
+**Goal:** Improve upon A2 baselines with novel approaches.
 
-The ground truth of the dataset is consistently determined by abstract themes that are not explicitly stated. The data requires a system to infer the core message or concept of a story.
+**Approaches:**
+1. **Multi-task Learning** (Ahmed): Dual-head model with ranking + classification
+2. **Data Augmentation** (Abdul Mueed): 500 additional synthetic samples
+3. **Hybrid System** (Musaab): SBERT + LLM with confidence-based routing
 
-*   **Evidence (Conceptual Gulf):** **Case 106** provides the most stark example. The dataset pairs two allegories about the failure of the Soviet system. Because they use entirely different vocabularies ("Communist worker" vs. "Soviet bureaucracy"), the lexical similarity was zero. This shows the dataset's similarity metric operates on a purely conceptual level, completely detached from surface-level words.
-*   **Evidence (Unusual Themes):** In **Case 25**, the true connection was the bizarre, shared theme of characters believing they are animals. The dataset expects systems to identify this highly specific, abstract link over more generic vocabulary related to the story's setting.
+**Best Configuration:**
+- **Threshold:** 0.15
+- **Accuracy:** 69.5%
+- **Cost Savings:** 27% vs pure LLM
+- **Strategy:** Use SBERT for high-confidence predictions, escalate to LLM otherwise
 
-**Implication:** A successful model must be capable of semantic reasoning. It needs to understand that "losing a job" and "a failed marriage" can both map to the concept of "loss." This points towards the necessity of high-quality embeddings or large language models.
+**Files:**
+- `assignments/assignment_3/src/musaab_hybrid_model.py` - Hybrid implementation
+- `assignments/assignment_3/plots/` - Visualizations (PDF)
+- `assignments/assignment_3/results/` - Result tables (CSV)
+- `assignments/assignment_3/reports/assignment_3_report.tex` - LaTeX report
 
-#### **Challenge 3: Narrative Structure and Outcomes Define Similarity**
+## 📈 Visualizations
 
-The dataset places significant weight on the *entire narrative arc*, especially the outcome. Stories that share an initial premise but have different conclusions are considered dissimilar.
+Generated plots are available in `assignments/assignment_3/plots/`:
+- `accuracy_comparison.pdf` - All model accuracies
+- `hybrid_architecture.pdf` - System architecture diagram
+- `hybrid_path_distribution.pdf` - Routing decisions
+- `confusion_matrix_multitask.pdf` - Multi-task model analysis
+- `similarity_distribution_overlap.pdf` - SBERT score distributions
+- `training_loss_curves.pdf` - Training dynamics
 
-*   **Evidence (Opposite Outcomes):** In **Case 18**, two stories shared a nearly identical setup: a class-based romance facing parental opposition. However, the dataset's ground truth ignores this, as one story ends in a tragic suicide and the other in a happy marriage. The **Outcome** is the deciding factor, rendering the initial lexical similarity irrelevant.
-*   **Evidence (Course of Action):** In **Case 46**, the correct choice was based on a shared plot structure (Affair -> Murder -> Protagonist faces consequences). The dataset rewards systems that can identify this sequential, cause-and-effect pattern over stories that merely share a cloud of related keywords.
+## 🔧 Configuration
 
-**Implication:** Our system cannot treat stories as unordered "bags of words." It must have a mechanism to understand sequence, causality, and the profound narrative impact of a story's conclusion.
+### Environment Variables
+```bash
+# For LLM-based models (Assignment 2 & 3)
+export POE_API_KEY="your_poe_api_key"
+```
 
-### **Conclusion and Path Forward**
+### Key Parameters
+- **Hybrid threshold:** 0.15 (configurable in `musaab_hybrid_model.py`)
+- **SBERT model:** `all-MiniLM-L6-v2`
+- **LLM:** GPT-4 via Poe API
 
-This analysis concludes that the SemEval 2026 Task 4 dataset is a robust challenge designed to test for true narrative understanding. The problem is not one of simple text classification, but of abstract reasoning about thematic content and plot structure.
+## 📝 Reports
 
-This data understanding phase has been critical. We now know not only that the problem is hard, but *why* it is hard, and have a much clearer path forward.
+Detailed reports for each assignment:
+- Assignment 1: `assignments/assignment_1/reports/`
+- Assignment 2: `assignments/assignment_2/reports/`
+- Assignment 3: `assignments/assignment_3/reports/assignment_3_report.tex`
 
-All cases analysis can be found in `reports/A1_Musaab_error_analysis_of_simple_models.md`.
+## 🙏 Acknowledgments
+
+- SemEval-2026 Task 4 organizers for the dataset and baselines
+- Sentence-Transformers library
+- Poe API for LLM access
+
+## 📄 License
+
+This project is for educational purposes as part of university coursework.

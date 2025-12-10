@@ -1,154 +1,119 @@
 # Assignment 3: Proposed Solution & Result Analysis
 
+> 📖 **See the main [README.md](../../README.md) for project overview and setup instructions.**
+
 ## Overview
-This assignment implements an incremental improvement over our best baseline from Assignment 2, focusing on multi-task learning and data augmentation strategies for improved narrative similarity detection.
 
-## Team Progress Status
+This assignment implements improvements over Assignment 2 baselines, focusing on multi-task learning, data augmentation, and a hybrid embedding-LLM system.
 
-| Team Member | Task | Status | Output |
-|-------------|------|--------|--------|
-| **Abdul Mueed** | Strategic Data Augmentation | ✅ Complete | 500 augmented samples |
-| **Ahmed Hassan** | Multi-Task Model Implementation | ⚠️ Script ready, training pending | Multi-task learning script |
-| **Usman Amjad** | Experimentation Lead | ❌ Blocked | Waiting for trained model |
-| **Muhammad Musaab** | System Integrator & Hybrid Model | 🔄 In Progress | Hybrid model + final report |
+## ✅ Final Results
+
+| Approach | Owner | Accuracy | Status |
+|----------|-------|----------|--------|
+| Multi-task Learning | Ahmed | 50.25% | ❌ Failed |
+| Data Augmentation | Abdul Mueed | +500 samples | ✅ Complete |
+| **Hybrid System** | Musaab | **69.5%** | ✅ Best A3 |
+
+### Hybrid System Performance
+- **Best Threshold:** 0.15
+- **Accuracy:** 69.5%
+- **Cost Savings:** 27% vs pure LLM
+- **Strategy:** SBERT for high-confidence → LLM for uncertain cases
+
+## Team Contributions
+
+| Team Member | Task | Status |
+|-------------|------|--------|
+| **Abdul Mueed** | Data Augmentation (500 samples) | ✅ Complete |
+| **Ahmed Hassan** | Multi-Task Model | ✅ Complete |
+| **Usman Amjad** | Experimentation & Analysis | ✅ Complete |
+| **Muhammad Musaab** | Hybrid Model & Report | ✅ Complete |
 
 ## Directory Structure
 
 ```
 assignment_3/
-├── notebooks/
-│   └── abdulmueed.ipynb          # Data augmentation notebook (generates 500 samples)
 ├── src/
-│   └── ahmed_multitask_model.py  # Multi-task learning implementation
-├── plots/                        # Visualizations (to be populated)
-├── reports/                      # Analysis reports (to be populated)
-└── README.md                     # This file
+│   ├── musaab_hybrid_model.py        # Hybrid SBERT+LLM system
+│   ├── ahmed_multitask_model.py      # Multi-task learning
+│   ├── usman_amjad_Assignment3.py    # Experimentation
+│   ├── evaluate_model.py             # Evaluation utilities
+│   ├── generate_tables.py            # Result table generation
+│   ├── musaab_generate_plots.py      # Visualization generation
+│   └── experiments/                   # Trained models
+├── notebooks/
+│   └── abdulmueed.ipynb              # Data augmentation
+├── output/
+│   └── musaab_hybrid/                # Hybrid model outputs
+│       ├── threshold_analysis.json   # Best threshold analysis
+│       └── hybrid_summary_t*.json    # Results per threshold
+├── plots/                            # PDF visualizations
+│   ├── accuracy_comparison.pdf
+│   ├── hybrid_architecture.pdf
+│   ├── hybrid_path_distribution.pdf
+│   └── ...
+├── results/                          # CSV result tables
+│   ├── model_comparison.csv
+│   ├── hybrid_analysis.csv
+│   └── author_contributions.csv
+└── reports/
+    └── assignment_3_report.tex       # Final LaTeX report
 ```
 
-## Completed Work
+## Quick Start
 
-### 1. Data Augmentation (Abdul Mueed) ✅
-- **File**: `notebooks/abdulmueed.ipynb`
-- **Output**: `data/processed/augmented_synthetic_500.jsonl`
-- **Description**: Generated 500 high-quality synthetic samples targeting weaknesses from Assignment 1 error analysis
-- **Status**: Complete and merged
-
-### 2. Multi-Task Model (Ahmed Hassan) ⚠️
-- **File**: `src/ahmed_multitask_model.py`
-- **Description**: Implements multi-task learning with two objectives:
-  - Head 1: Semantic Ranking (triplet loss)
-  - Head 2: Binary Classification (cross-entropy loss)
-- **Status**: Script complete, awaiting training execution
-
-## Dependency Chain
-
-```
-[Original Synthetic Data] ─┐
-                          ├─→ [Ahmed's Multi-Task Model] ─→ [Usman's Experiments] ─→ [Musaab's Hybrid System]
-[Abdul's 500 Samples] ────┘
-```
-
-## How to Run
-
-### 1. Train Multi-Task Model (Ahmed needs to run this)
+### Run Hybrid Model
 ```bash
-cd assignments/assignment_3
-python src/ahmed_multitask_model.py
+python assignments/assignment_3/src/musaab_hybrid_model.py
 ```
 
-**Expected outputs:**
-- Trained model saved to `output/ahmed_multitask_model/`
-- Training metrics and loss curves
-- Evaluation results on dev set
-
-### 2. Run Experiments (Usman - after Ahmed's model is ready)
+### Generate Plots
 ```bash
-# Will use Ahmed's trained model
-# Train on combined dataset (original + augmented)
-# Generate performance metrics and visualizations
+python assignments/assignment_3/src/musaab_generate_plots.py
 ```
 
-### 3. Hybrid Model Integration (Musaab - after experiments)
+### Generate Result Tables
 ```bash
-# Combine embedding model with CoT LLM
-# Implement confidence-based routing
-# Final evaluation and report generation
+python assignments/assignment_3/src/generate_tables.py
 ```
 
-## Data Files
+## Key Findings
 
-- **Original synthetic data**: `data/processed/synthetic_data_for_contrastive_learning.jsonl` (2,400 triplets)
-- **Augmented data**: `data/processed/augmented_synthetic_500.jsonl` (500 new samples)
-- **Dev set**: `data/raw/dev_track_a.jsonl` (201 examples)
+1. **Multi-task Learning Failed:** 50.25% accuracy (near random) - the dual-head approach didn't transfer well to this task
+2. **Hybrid System Effective:** By routing confident SBERT predictions directly and using LLM only for uncertain cases, we achieve 69.5% accuracy with 27% cost savings
+3. **Best Threshold:** 0.15 - balances accuracy vs cost optimally
 
-## Next Steps
-
-### Immediate Actions Required:
-1. **Ahmed**: Run the multi-task training script
-   ```bash
-   python assignments/assignment_3/src/ahmed_multitask_model.py
-   ```
-
-2. **Usman**: Once Ahmed's model is ready:
-   - Combine datasets (original 2400 + augmented 500)
-   - Train on combined data
-   - Generate evaluation metrics
-   - Create loss curves and performance visualizations
-
-3. **Musaab**: Design and implement hybrid system:
-   - Fast embedding model for initial prediction
-   - Confidence scoring mechanism
-   - CoT LLM fallback for low-confidence cases
-   - System integration and final evaluation
-
-### Expected Timeline:
-- Ahmed's training: 1-2 hours (including debugging)
-- Usman's experiments: 2-3 hours
-- Musaab's integration: 3-4 hours
-- Final report compilation: 2 hours
-
-## Technical Notes
+## Technical Details
 
 ### Multi-Task Learning Architecture
-- Base model: SentenceTransformer (likely all-MiniLM-L6-v2 or similar)
-- Two training objectives running simultaneously:
+- Base model: SentenceTransformer (`all-MiniLM-L6-v2`)
+- Two training objectives:
   1. Triplet ranking loss (for semantic similarity)
   2. Binary classification loss (for A/B choice prediction)
-- Shared encoder with task-specific heads
+- **Result:** 50.25% accuracy (failed - task mismatch)
 
-### Data Augmentation Strategy
-- Abdul's 500 samples specifically target error cases from Assignment 1:
-  - Stories with misleading lexical overlap
-  - Abstract thematic similarities
-  - Narrative structure variations
-
-### Hybrid Model Design (Planned)
+### Hybrid Model Architecture
 ```
-Input → Embedding Model → Confidence Score
-           ↓
-    High Confidence → Direct Prediction
-           ↓
-    Low Confidence → CoT LLM (GPT-4o-mini/Mistral)
-           ↓
-        Final Output
+Input → SBERT Embedding → Similarity Scores → Confidence Check
+                                                    ↓
+                              High Confidence (>0.15) → Direct SBERT Prediction
+                                                    ↓
+                              Low Confidence (≤0.15) → CoT LLM (GPT-4)
+                                                    ↓
+                                              Final Output
 ```
 
-## Evaluation Metrics
-- Primary: Accuracy on dev_track_a.jsonl
-- Secondary: Confidence calibration, inference time
-- Analysis: Error types, improvement over baselines
+### Data Augmentation
+- 500 synthetic samples targeting error cases from Assignment 1
+- Focus on: lexical traps, abstract themes, narrative structure
 
-## Known Issues / Blockers
-1. Ahmed's model training is pending - blocking downstream work
-2. Usman hasn't started - waiting for trained model
-3. GPU availability might affect training time
+## Deliverables
 
-## Assignment Deliverables
-As per project requirements:
-1. **Report (3-4 pages)**: Including proposed method, experiments, results
-2. **Python code**: All models and evaluation scripts
-3. **Visualizations**: Loss curves, confusion matrices, performance comparisons (PDF format)
+- ✅ **Code:** `src/musaab_hybrid_model.py`, `src/ahmed_multitask_model.py`
+- ✅ **Report:** `reports/assignment_3_report.tex` (LaTeX, 4 pages)
+- ✅ **Visualizations:** 6 PDF plots in `plots/`
+- ✅ **Results:** CSV tables in `results/`
 
 ---
-**Last Updated**: December 7, 2025
-**Maintained by**: Muhammad Musaab ul Haq (Team Lead)
+**Last Updated**: December 11, 2025  
+**Status**: ✅ Complete
