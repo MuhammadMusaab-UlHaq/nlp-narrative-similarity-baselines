@@ -187,8 +187,6 @@ Detailed reports for each assignment:
 ## 🙏 Acknowledgments
 
 - SemEval-2026 Task 4 organizers for the dataset and baselines
-- Sentence-Transformers library
-- Poe API for LLM access
 
 ## 📄 License
 
