@@ -3,10 +3,19 @@ __pycache__/
 *.py[cod]
 *.class
 .ipynb_checkpoints/
+.venv/
+venv/
 
 # OS
 desktop.ini
 .DS_Store
+
+# Editors / IDEs
+.vscode/
+
+# Logs and temporary outputs
+*.log
+logs/
 
 # Data & Models (Too large for Git)
 data/
@@ -16,7 +25,6 @@ data/
 *.bin
 assignments/**/output/
 assignments/**/finetuned_model/
-venv/
 directory_info.txt
 generate_context.py
 generate_full_report.py
