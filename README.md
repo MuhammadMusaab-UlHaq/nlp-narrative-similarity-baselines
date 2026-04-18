@@ -3,7 +3,7 @@
 **Course Project - Artificial Intelligence**  
 **NUST, Islamabad**
 
-## 📋 Overview
+## Overview
 
 This repository contains our team's implementation for [SemEval-2026 Task 4: How Similar is Too Similar?](https://www.codabench.org/competitions/10273/) - a shared task focused on detecting semantic proximity between narrative stories.
 
@@ -15,7 +15,7 @@ Given an **anchor story** and two candidate stories (**Text A** and **Text B**),
 - Story outcomes and conclusions
 - Character dynamics and relationships
 
-## 🏆 Key Results
+## Key Results
 
 | Model | Assignment | Accuracy | Cost/Sample |
 |-------|------------|----------|-------------|
@@ -30,7 +30,7 @@ Given an **anchor story** and two candidate stories (**Text A** and **Text B**),
 **Best Overall:** CoT LLM at 71.8% accuracy  
 **Best Cost-Efficient:** Hybrid System at 69.5% with 27% cost savings
 
-## 👥 Team Members
+## Team Members
 
 | Name | Role | Key Contributions |
 |------|------|-------------------|
@@ -39,7 +39,7 @@ Given an **anchor story** and two candidate stories (**Text A** and **Text B**),
 | **Abdul Mueed** | Data Scientist | Statistical analysis, Data augmentation |
 | **Usman Amjad** | ML Engineer | Fine-tuned SBERT, Experimentation |
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 ai_sem_proj_semeval-2026-task-4-baselines/
@@ -63,7 +63,7 @@ ai_sem_proj_semeval-2026-task-4-baselines/
     └── assignment_3/                  # Proposed Solution
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -98,7 +98,7 @@ python assignments/assignment_2/src/model_4_finetuned_sbert.py
 python assignments/assignment_3/src/musaab_hybrid_model.py
 ```
 
-## 📊 Assignment Details
+## Assignment Details
 
 ### Assignment 1: Problem & Data Understanding
 
@@ -154,7 +154,7 @@ python assignments/assignment_3/src/musaab_hybrid_model.py
 - `assignments/assignment_3/results/` - Result tables (CSV)
 - `assignments/assignment_3/reports/assignment_3_report.tex` - LaTeX report
 
-## 📈 Visualizations
+## Visualizations
 
 Generated plots are available in `assignments/assignment_3/plots/`:
 - `accuracy_comparison.pdf` - All model accuracies
@@ -164,7 +164,7 @@ Generated plots are available in `assignments/assignment_3/plots/`:
 - `similarity_distribution_overlap.pdf` - SBERT score distributions
 - `training_loss_curves.pdf` - Training dynamics
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 ```bash
@@ -177,14 +177,14 @@ export POE_API_KEY="your_poe_api_key"
 - **SBERT model:** `all-MiniLM-L6-v2`
 - **LLM:** GPT-4 via Poe API
 
-## 📝 Reports
+## Reports
 
 Detailed reports for each assignment:
 - Assignment 1: `assignments/assignment_1/reports/`
 - Assignment 2: `assignments/assignment_2/reports/`
-- Assignment 3: `assignments/assignment_3/reports/assignment_3_report.tex`
+- Assignment 3: `assignments/assignment_3/reports/`
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - SemEval-2026 Task 4 organizers for the dataset and baselines
 
