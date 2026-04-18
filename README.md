@@ -187,7 +187,3 @@ Detailed reports for each assignment:
 ## Acknowledgments
 
 - SemEval-2026 Task 4 organizers for the dataset and baselines
-
-## 📄 License
-
-This project is for educational purposes as part of university coursework.
