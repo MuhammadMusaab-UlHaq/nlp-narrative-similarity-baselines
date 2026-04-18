@@ -7,9 +7,6 @@
 This repository contains baseline and course-assignment implementations for **SemEval-2026 Task 4: How Similar is Too Similar?**.  
 The task compares an anchor story with two candidate stories and predicts which candidate is more semantically similar.
 
-> This cleanup update is intentionally **non-functional**: it improves repository hygiene and documentation presentation only.  
-> No modeling logic, methodology, or reported results were changed.
-
 ## Repository Structure
 
 ```text
@@ -65,9 +62,9 @@ python assignments/assignment_3/src/musaab_hybrid_model.py
 - Dependency versions are pinned as lower bounds in `requirements.txt`.
 - Raw and processed data are expected under `data/raw` and `data/processed`.
 - LLM-based runs require `POE_API_KEY`.
-- Existing result claims in project reports/assignment artifacts are unchanged by this cleanup.
+- Reported results come from assignment experiments and associated project reports.
 
-## Key Reported Results (Unchanged)
+## Key Reported Results
 
 | Model | Assignment | Accuracy | Cost/Sample |
 |---|---|---:|---:|
@@ -78,14 +75,6 @@ python assignments/assignment_3/src/musaab_hybrid_model.py
 | **CoT LLM (GPT-4)** | A2 | **71.80%** | ~$0.02 |
 | Multi-task Learning | A3 | 50.25% | $0 |
 | **Hybrid System** | A3 | **69.50%** | ~$0.015 (27% savings) |
-
-## What Was Reorganized in This Cleanup
-
-- Removed tracked editor-specific VS Code settings from version control.
-- Updated `.gitignore` for editor files, virtual environments, and log artifacts.
-- Reformatted `requirements.txt` for readability without changing dependency versions.
-- Added a standard MIT `LICENSE` file.
-- Rewrote this README for clearer setup/run/reproducibility guidance.
 
 ## Acknowledgments
 
